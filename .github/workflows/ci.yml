@@ -1,0 +1,29 @@
+name: CI
+
+# Triggers: run on pushes and pull requests to main
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Display basic environment info
+      - name: Print environment info
+        run: |
+          echo "Runner OS: $RUNNER_OS"
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Branch: $GITHUB_REF_NAME"
+          echo "Commit SHA: $GITHUB_SHA"
+
+      # List repository files
+      - name: List files
+        run: ls -la
