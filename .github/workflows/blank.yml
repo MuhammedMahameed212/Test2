@@ -1,0 +1,30 @@
+name: My First Workflow
+
+# 1. Triggers: When should this workflow run?
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+# 2. Jobs: What tasks should be executed?
+jobs:
+  example_job:
+    # The operating system the job will run on
+    runs-on: ubuntu-latest
+
+    # 3. Steps: The sequence of commands to run in this job
+    steps:
+      # This is a pre-built action that checks out your code so the workflow can access it
+      - name: Checkout repository code
+        uses: actions/checkout@v4
+
+      # This runs a basic command-line script
+      - name: Print a greeting
+        run: echo "Hello, GitHub Actions! The code has been checked out."
+        
+      # You can run multiple commands at once
+      - name: Check the current directory
+        run: |
+          echo "Listing files in the repository:"
+          ls -la
